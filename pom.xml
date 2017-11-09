@@ -136,13 +136,13 @@
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-scripting</artifactId>
-			<version>${mule.version}</version>
+			<version>${mule.transport}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-xml</artifactId>
-			<version>${mule.version}</version>
+			<version>${mule.transport}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- for testing -->
