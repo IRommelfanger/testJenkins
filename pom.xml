@@ -13,12 +13,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<mule.version>3.8.3</mule.version>
+		<mule.version>3.9.0</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
 	</properties>
 
 	<build>
 		<plugins>
+			<!-- maven plugin, without it, the deploy will not work -->
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-app-maven-plugin</artifactId>
@@ -28,6 +29,16 @@
 					<copyToAppsDirectory>false</copyToAppsDirectory>
 				</configuration>
 			</plugin>
+			<!-- Disable the default execution of the maven deploy plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<!-- build helper, not necessary -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -55,65 +66,26 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- deploy to a local runtime -->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>properties-maven-plugin</artifactId>
-				<version>1.0.0</version>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<deploymentType>standalone</deploymentType>
+					<muleVersion>3.8.5</muleVersion>
+					<muleHome>C:\mule-ee-distribution-standalone-3.8.4\mule-enterprise-standalone-3.8.4</muleHome>
+				</configuration>
 				<executions>
 					<execution>
-						<phase>initialize</phase>
-						<goals>
-							<goal>read-project-properties</goal>
-						</goals>
-						<configuration>
-							<files>
-								<file>src/main/resources/init.properties</file>
-							</files>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Please use this plugin just if you want to deploy the app to Anypoint 
-				Runtime Manager -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.0.2</version>
-				<executions>
-					<execution>
-						<id>copy</id>
+						<id>deploy</id>
 						<phase>package</phase>
 						<goals>
-							<goal>copy</goal>
+							<goal>deploy</goal>
 						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>com.mycompany</groupId>
-									<artifactId>maven-with-jenkins</artifactId>
-									<version>1.0.0-SNAPSHOT</version>
-									<type>zip</type>
-									<overWrite>false</overWrite>
-									<outputDirectory>${mule.home}</outputDirectory>
-									<destFileName>mule-with-jenkins-1.0.0-SNAPSHOT.zip</destFileName>
-								</artifactItem>
-							</artifactItems>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>true</overWriteSnapshots>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Disable the default execution of the maven deploy plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 
@@ -200,6 +172,12 @@
 
 	<repositories>
 		<repository>
+			<id>mulesoft-releases</id>
+			<name>MuleSoft Releases Repository</name>
+			<url>http://repository.mulesoft.org/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
 			<id>Nexus</id>
 			<name>Nexus Public Repository</name>
 			<url>https://repository-master.mulesoft.org/nexus/content/groups/public/</url>
@@ -211,12 +189,7 @@
 			<url>http://repo1.maven.org/maven2/</url>
 			<layout>default</layout>
 		</repository>
-		<repository>
-			<id>mulesoft-releases</id>
-			<name>MuleSoft Releases Repository</name>
-			<url>http://repository.mulesoft.org/releases/</url>
-			<layout>default</layout>
-		</repository>		
+
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -226,7 +199,12 @@
 			<url>http://repository.mulesoft.org/releases/</url>
 			<snapshots>
 				<enabled>false</enabled>
-			</snapshots>
+			</snapshots>			
+		</pluginRepository>
+		<!-- needed for Maven Plugin Deployment, without errors are thrown -->
+		<pluginRepository>
+			<id>mule-public</id>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
 		</pluginRepository>
 	</pluginRepositories>
 
