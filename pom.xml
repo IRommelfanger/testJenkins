@@ -57,9 +57,7 @@
 				<configuration>
 					<skip>true</skip>
 				</configuration>
-			</plugin>
-
-			
+			</plugin>		
 			<!-- Deploying to Anypoint Runtime Manager -->
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -67,8 +65,8 @@
 				<version>2.2.1</version>
 				<configuration>
 					<deploymentType>arm</deploymentType>
-					<username>${user.name}</username>
-					<password>${user.password}</password>
+					<username>Rommelfanger</username>
+					<password>nterraMule123</password>
 					<target>ServerWindows7</target>
 					<!-- One of: server, serverGroup, cluster -->
 					<targetType>server</targetType>
