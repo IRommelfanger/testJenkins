@@ -67,20 +67,24 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- deploy to a local runtime -->
+			<!-- Deploying to Anypoint Runtime Manager -->
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>2.2.1</version>
 				<configuration>
-					<deploymentType>standalone</deploymentType>
-					<muleVersion>3.8.5</muleVersion>
-					<muleHome>C:\mule-standalone-3.9.0\mule-standalone-3.9.0</muleHome>
+					<deploymentType>arm</deploymentType>
+					<username>${user.name}</username>
+					<password>${user.password}</password>
+					<target>ServerWindows7</target>
+					<!-- One of: server, serverGroup, cluster -->
+					<targetType>server</targetType>
+					<environment>Production</environment>
 				</configuration>
 				<executions>
 					<execution>
 						<id>deploy</id>
-						<phase>package</phase>
+						<phase>deploy</phase>
 						<goals>
 							<goal>deploy</goal>
 						</goals>
@@ -107,12 +111,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- Mule Transports -->
-		
+
 		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-http</artifactId>
 			<version>${mule.transport}</version>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>com.mulesoft.muleesb.transports</groupId>
@@ -195,7 +199,7 @@
 			<url>http://repository.mulesoft.org/releases/</url>
 			<snapshots>
 				<enabled>false</enabled>
-			</snapshots>			
+			</snapshots>
 		</pluginRepository>
 		<!-- needed for Maven Plugin Deployment, without errors are thrown -->
 		<pluginRepository>
