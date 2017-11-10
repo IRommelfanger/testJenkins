@@ -13,9 +13,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<mule.version>3.8.3</mule.version>
+		<mule.version>3.9.0</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
-		<mule.transport>3.8.1</mule.transport>
+		<mule.transport>3.9.0</mule.transport>
 	</properties>
 
 	<build>
@@ -75,7 +75,7 @@
 				<configuration>
 					<deploymentType>standalone</deploymentType>
 					<muleVersion>3.8.5</muleVersion>
-					<muleHome>C:\mule-ee-distribution-standalone-3.8.4\mule-enterprise-standalone-3.8.4</muleHome>
+					<muleHome>C:\mule-standalone-3.9.0\mule-standalone-3.9.0</muleHome>
 				</configuration>
 				<executions>
 					<execution>
