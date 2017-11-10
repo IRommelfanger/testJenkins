@@ -20,25 +20,6 @@
 
 	<build>
 		<plugins>
-			<!-- maven plugin, without it, the deploy will not work -->
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-app-maven-plugin</artifactId>
-				<version>${mule.tools.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<copyToAppsDirectory>false</copyToAppsDirectory>
-				</configuration>
-			</plugin>
-			<!-- Disable the default execution of the maven deploy plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
 			<!-- Read property file -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -58,6 +39,26 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- maven plugin, without it, the deploy will not work -->
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-app-maven-plugin</artifactId>
+				<version>${mule.tools.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<copyToAppsDirectory>false</copyToAppsDirectory>
+				</configuration>
+			</plugin>
+			<!-- Disable the default execution of the maven deploy plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
 			<!-- build helper, not necessary -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -93,8 +94,8 @@
 				<version>2.2.1</version>
 				<configuration>
 					<deploymentType>arm</deploymentType>
-					<username>Rommelfanger</username>
-					<password>nterraMule123</password>
+					<username>${user.name}</username>
+					<password>${user.password}</password>
 					<target>ServerWindows7</target>
 					<!-- One of: server, serverGroup, cluster -->
 					<targetType>server</targetType>
