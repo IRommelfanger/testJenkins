@@ -93,8 +93,8 @@
 				<version>2.2.1</version>
 				<configuration>
 					<deploymentType>arm</deploymentType>
-					<username>${user.name}</username>
-					<password>${user.password}</password>
+					<username>Rommelfanger</username>
+					<password>nterraMule123</password>
 					<target>ServerWindows7</target>
 					<!-- One of: server, serverGroup, cluster -->
 					<targetType>server</targetType>
@@ -196,7 +196,12 @@
 			<url>http://repository.mulesoft.org/releases/</url>
 			<layout>default</layout>
 		</repository>
-		
+		<repository>
+			<id>Nexus</id>
+			<name>Nexus Public Repository</name>
+			<url>https://repository-master.mulesoft.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+		</repository>
 		<repository>
 			<id>Central</id>
 			<name>Central</name>
