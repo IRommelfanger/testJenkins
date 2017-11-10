@@ -57,19 +57,20 @@
 				<configuration>
 					<skip>true</skip>
 				</configuration>
-			</plugin>		
-			<!-- Deploying to Anypoint Runtime Manager -->
+			</plugin>
+			<!-- Deployment to Cloudhub -->
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>2.2.1</version>
 				<configuration>
-					<deploymentType>arm</deploymentType>
-					<username>${user.name}</username>
-					<password>${user.password}</password>
-					<target>ServerWindows7</target>
-					<!-- One of: server, serverGroup, cluster -->
-					<targetType>server</targetType>
+					<deploymentType>cloudhub</deploymentType>
+					<!-- muleVersion is the runtime version as it appears on the CloudHub 
+						interface -->
+					<muleVersion>3.8.5</muleVersion>
+					<username>Rommelfanger</username>
+					<password>nterraMule123</password>
+					<redeploy>true</redeploy>
 					<environment>Production</environment>
 				</configuration>
 				<executions>
