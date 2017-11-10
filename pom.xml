@@ -59,34 +59,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- build helper, not necessary -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>add-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/main/app/</directory>
-								</resource>
-								<resource>
-									<directory>src/main/api/</directory>
-								</resource>
-								<resource>
-									<directory>mappings/</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			
 			<!-- Deploying to Anypoint Runtime Manager -->
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -116,6 +89,12 @@
 
 	<!-- Mule Dependencies -->
 	<dependencies>
+		<!-- for properties file plugin -->
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>properties-maven-plugin</artifactId>
+			<version>1.0-alpha-1</version>
+		</dependency>
 		<!-- Xml configuration -->
 		<dependency>
 			<groupId>com.mulesoft.muleesb</groupId>
@@ -187,11 +166,6 @@
 			<artifactId>mule-module-spring-config</artifactId>
 			<version>${mule.transport}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>properties-maven-plugin</artifactId>
-			<version>1.0-alpha-1</version>
 		</dependency>
 	</dependencies>
 
