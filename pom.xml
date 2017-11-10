@@ -33,7 +33,7 @@
 						</goals>
 						<configuration>
 							<files>
-								<file>src\main\resources\init.properties</file>
+								<file>src/main/resources/init.properties</file>
 							</files>
 						</configuration>
 					</execution>
@@ -65,8 +65,8 @@
 				<version>2.2.1</version>
 				<configuration>
 					<deploymentType>arm</deploymentType>
-					<username>Rommelfanger</username>
-					<password>nterraMule123</password>
+					<username>${user.name}</username>
+					<password>${user.password}</password>
 					<target>ServerWindows7</target>
 					<!-- One of: server, serverGroup, cluster -->
 					<targetType>server</targetType>
